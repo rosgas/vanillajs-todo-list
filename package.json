@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "deploy": "gh-pages -d dist",
-    "compileSass": "sass -w scss/main.scss dist/css/main.css"
+    "compileSass": "sass -w scss/main.scss dist/css/main.css --style expanded"
   },
   "keywords": [],
   "author": "",
