@@ -140,7 +140,7 @@ npm run compileSass
 
 <h2 id="license-section">License</h2>
 
-This project is licensed under the [MIT License]().
+This project is licensed under the [MIT License](LICENSE.md).
 
 <br>
 
