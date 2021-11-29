@@ -3,6 +3,7 @@
 [![Generic badge](https://img.shields.io/badge/Made%20with-Javascript-f7df1e.svg)](https://www.javascript.com)
 [![Generic badge](https://img.shields.io/badge/npm-v.6.14.5-blue.svg)](https://www.npmjs.com/package/npm/v/6.14.5)
 [![Generic badge](https://img.shields.io/badge/Author-Rossella%20Gasbarri-cf62e2.svg)](https://github.com/rosgas)
+[![Generic badge](https://img.shields.io/badge/license-MIT-28b463.svg)](https://github.com/rosgas/vanillajs-todo-list/blob/master/LICENSE)
 
 <br>
 
@@ -70,7 +71,7 @@
 
 <h2 id="live-demo-section">Live demo</h2>
 
-[Check out the demo page]()
+[Check out the demo page](https://rosgas.github.io/vanillajs-todo-list/)
 
 <br>
 
