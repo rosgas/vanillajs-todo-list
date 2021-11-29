@@ -1,0 +1,43 @@
+$main-font-family: 'Open Sans', sans-serif;
+$title-font-family: 'Montserrat', sans-serif;
+
+$main-color: rgb(22, 160, 133);
+$secondary-color: rgb(175, 122, 197);
+$secondary-color-dark: rgb(148, 84, 175);
+
+$dark-color: #3d3d3d;
+$medium-color: #626567;
+$light-color: rgb(166, 172, 175);
+
+$border-color-light: rgb(229, 231, 233);
+$border-color-dark: rgba(49, 49, 49, 0.3);
+
+$container-width: 800px;
+$container-bg: #fff;
+
+$row-height: 40px;
+$row-internal-height: 20px;
+
+$row-bg: #fff;
+$row-border-color: rgb(229, 231, 233);
+
+//Dotted menu variables
+$dots-menu-height: $row-internal-height;
+$dots-diameter: 4px;
+$dots-color: $medium-color;
+$dots-hover-color: rgba(49, 49, 49, 0.6);
+$menu-width: 200px;
+$menu-height: 120px;
+$menu-height-todos: 180px;
+$menu-transition-speed: 0.5s;
+$link-color: $medium-color;
+$link-hover-color: $main-color;
+
+$high-priority-color: rgba(250, 128, 114, 0.7);
+$medium-priority-color: rgb(248, 196, 113);
+$low-priority-color: rgb(84, 153, 199);
+
+$bookmark-color: rgb(195, 155, 211);
+
+// Note area
+$note-area-height: 160px;

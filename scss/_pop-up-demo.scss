@@ -1,0 +1,63 @@
+#demo-pop-up {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300vh;
+  height: 300vh;
+  background: radial-gradient(rgba(49, 49, 49, 1), transparent, transparent);
+
+  @include border-radius(50%);
+  @include flexbox;
+  @include align-items($value: center);
+  @include justify-content($value: center);
+  transform-origin: 0 0;
+  @include transform(scale(0.3), translateX(-50%), translateY(-50%));
+  opacity: 0;
+  visibility: hidden;
+  @include transition(0.3s, ease, 0s);
+  z-index: 6;
+
+  .close-demo-btn {
+    position: relative;
+    top: -15%;
+    left: -13px;
+    background: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    @include transform(scale(1), translateX(0), translateY(-50%));
+  }
+
+  #demo {
+    border-radius: 5px;
+    overflow: hidden;
+    @include transform(scale(1), translateX(13px), translateY(5px));
+  }
+
+  &.show-demo {
+    background: rgba(49, 49, 49, 0.6);
+    @include transform(scale(1), translateX(-50%), translateY(-50%));
+    opacity: 1;
+    visibility: visible;
+    @include transition(0.1s, linear, 0s);
+  }
+
+  &.hide-demo {
+    background: radial-gradient(rgba(49, 49, 49, 1), transparent);
+    @include transform(scale(0.5), translateX(-50%), translateY(-50%));
+    opacity: 0;
+    visibility: hidden;
+    @include transition(0.1s, linear, 0s);
+  }
+}
+
+@media (max-width: 500px) {
+  #demo {
+    .demo-large-screen {
+      display: none;
+    }
+    .demo-mobile {
+      display: block;
+    }
+  }
+}

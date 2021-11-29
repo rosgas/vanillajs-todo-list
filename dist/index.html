@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/d06c559023.js"
+      crossorigin="anonymous"
+    ></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/dist/css/main.css" />
+    <title>To do list</title>
+  </head>
+  <body>
+    <div id="main-container">
+      <div id="notification"></div>
+      <div id="demo-pop-up">
+        <video id="demo" width="auto" height= "30%" loop>
+          <source type="video/mp4">
+        </video>
+        <button class="close-demo-btn" onclick="func(event)">
+          <i class="fas fa-times fa-2x"></i>
+        </button>
+      </div>  
+    <div id="main-bg"></div>
+    <small class="bg-attribute">Photo by <a href="https://unsplash.com/@jessbaileydesigns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jess Bailey</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
+    <div id="container">
+      <div id="card-section-input">
+        <h1 class="main-title">Todo list</h1>
+        <div class="info-box open">
+          <input type="checkbox" class="toggle-info-btn">
+          <div class="info-content">
+            <p class="intro-text">
+              <span class="highlighted"> A simple to-do list maker to manage personal tasks  so you never forget what you need to do next. </span> <br> <br> This to-do list application works well within your favourite browser, saving your list locally in <span class="highlighted">  Local Storage </span>. That means you will not be able to see your list on another device or even in another browser on the same device. <br> <br> You can find a   <span class="highlighted">visual guide </span>to the user interface and key features of the application by clicking on the APP DEMO button.
+              <p></p>
+            </p>
+            <button class="demo-btn">APP DEMO</button>
+            
+          </div>
+        </div>
+
+        <form id="todo-form" autocomplete="off">
+          <div class="input-field row row-menu">
+            <div class="priority-icon"></div>
+            <input type="text" id="todo" class="todo text-input" />
+            <label for="todo">New todo</label>
+
+            <div class="bookmark-container"><div class="bookmark"></div></div>
+
+            <div id="menu-wrap">
+              <input type="checkbox" id="toggler" class="toggler" />
+              <div class="dots"><div></div></div>
+              <div class="menu">
+                <ul class="menu-actions">
+                  <li class="priority">
+                    Priority
+                    <div class="priority-btns">
+                      <button class="high" onclick="func(event)">
+                      </button>
+                      <button class="medium" onclick="func(event)">
+                      </button>
+                      <button class="low" onclick="func(event)">
+                      </button>
+                    </div>
+                  </li>
+                  <li>
+                    <button class="add-note" onclick="func(event)">
+                      Add note
+                      <i class="far fa-edit"></i>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div id="note" class="note close">
+              <div class="note-container">
+                <label for="note-area"></label>
+                <textarea
+                  name="note-area"
+                  class="note-area"
+                  rows="4"
+                  placeholder="Add note..."
+                  data-gramm="false"
+                  data-gramm_editor="false"
+                  data-enable-grammarly="false"
+                ></textarea>
+
+                <button class="close-note" onclick="func(event)">
+                  <i class="fas fa-times"></i>
+                </button>
+
+                <div class="note-btn">
+                  <input type="button" value="Add note" class="add-note-btn" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <input type="submit" value="Add Todo" class="btn-add" />
+        </form>
+      </div>
+
+      <div id="card-section-actions">
+        <h3 class="title">Todos</h3>
+
+        <div class="input-field row">
+          <input type="text" id="filter" class="filter text-input" />
+          <label for="filter">Filter todos</label>
+          <button class="clear-filter"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="results-found"> <span class="matches"></span> results found</div>
+
+        <ul class="todos"></ul>
+
+        <small>
+          <span class="todos-left">0</span>
+          todos left
+        </small>
+      </div>
+
+      <div id="card-section-buttons">
+        <button class="btn-filter-all">All</button>
+        <button class="btn-filter-completed">Completed</button>
+        <button class="btn-clear-completed">Clear completed</button>
+      </div>
+      <footer>
+        <small class="author">Personal coding project by  <a href="mailto:rgasbarri.274@gmail.com">Rossella Gasbarri</a> </small>
+        <a href="https://rosgas.github.io/vanillajs-todo-list/" class="rep-link">GitHub repository</a>
+      </footer>
+      
+    </div>
+    </div>
+
+    <script src="/dist/js/storageCtrl.js"></script>
+    <script src="/dist/js/itemCtrl.js"></script>
+    <script src="/dist/js/formUICtrl.js"></script>
+    <script src="/dist/js/itemListUICtrl.js"></script>
+    <script src="/dist/js/noteUICtrl.js"></script>
+    <script src="/dist/js/itemListAppCtrl.js"></script>
+    <script src="/dist/js/main.js"></script>
+  </body>
+</html>

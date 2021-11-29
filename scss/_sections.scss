@@ -1,0 +1,161 @@
+.input-field {
+  position: relative;
+  margin-bottom: 15px;
+  border: 0.5px solid $border-color-dark;
+  @include border-radius(2px);
+
+  %label-shared {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-size: 15px;
+  }
+
+  label {
+    @extend %label-shared;
+    top: 7px;
+    color: $light-color;
+    @include transform(scale(1), translateX(0), translateY(0));
+    @include transition(0.5s, ease, 0s);
+    cursor: text;
+  }
+
+  &.focus-input {
+    border: 1px solid $main-color;
+    @include transition(0.5s, ease, 0s);
+
+    label {
+      @extend %label-shared;
+      top: -25px;
+      color: $main-color;
+      @include transform(scale(0.85), translateX(-15px), translateY(0));
+      @include transition(0.5s, ease, 0s);
+    }
+  }
+
+  .text-input {
+    width: 100%;
+    padding-right: 5px;
+    font-family: $main-font-family;
+    font-weight: 600;
+    font-size: 15px;
+    color: $medium-color;
+    border: none;
+    background-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    -webkit-transition: background-color 600000s 0s, color 600000s 0s;
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
+}
+
+.row {
+  position: relative;
+  height: $row-height;
+  width: 100%;
+  padding: 0 10px;
+  @include flexbox;
+  @include align-items($value: center);
+  @include justify-content($value: space-between);
+  opacity: 1;
+  visibility: visible;
+  @include transition(0.3s, ease, 0s);
+
+  &.focus {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% - 2px);
+      height: calc(100% - 2px);
+      border: 1px solid $main-color;
+    }
+  }
+
+  .todo-text {
+    padding-right: 35px;
+    font-family: $main-font-family;
+    font-size: 15px;
+    font-weight: 600;
+    overflow: scroll;
+  }
+
+  .priority-icon {
+    margin-right: 10px;
+    display: none;
+
+    &.cursor-active {
+      position: relative;
+
+      &:hover:after {
+        content: 'Remove priority';
+        left: 0;
+        @extend %hover-box-content;
+      }
+    }
+  }
+
+  .bookmark-container {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    margin-right: 10px;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    @include transition(0.4s, ease, 0s);
+
+    .bookmark {
+      position: relative;
+      top: 0;
+      height: 100%;
+      width: 12px;
+      background-color: $bookmark-color;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        height: 0;
+        border-width: 0 0 9px 6px;
+        border-color: transparent transparent transparent $bookmark-color;
+        border-style: solid;
+        @include transform(scale(1), translateX(0), translateY(95%));
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 50%;
+        height: 0;
+        border-width: 0 6px 9px 0;
+        border-color: transparent $bookmark-color transparent transparent;
+        border-style: solid;
+        @include transform(scale(1), translateX(0), translateY(95%));
+      }
+    }
+
+    &.visible {
+      height: 16px;
+      opacity: 1;
+      visibility: visible;
+      @include transition(0.4s, ease, 0s);
+    }
+
+    &.move {
+      height: 0;
+      @include transition(0.4s, ease, 0s);
+    }
+  }
+}

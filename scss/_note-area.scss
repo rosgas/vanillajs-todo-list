@@ -1,0 +1,119 @@
+.note {
+  .note-container {
+    position: absolute;
+    left: -1px;
+    top: $row-height;
+    background-color: #fff;
+    padding: 20px 10px 10px 10px;
+    @include box-shadow(2px, 4px, 6px, rgba(49, 49, 49, 0.2));
+    width: calc(100% + 2px);
+    height: 0;
+    opacity: 0;
+    z-index: 3;
+
+    .note-area {
+      width: 100%;
+      border: none;
+      font-family: $main-font-family;
+      font-size: 14px;
+      color: $medium-color;
+      font-size: 15px;
+      margin-bottom: 10px;
+      opacity: 0;
+
+      &::first-letter {
+        text-transform: capitalize;
+      }
+
+      &::placeholder {
+        color: $light-color;
+        font-size: 14px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .close-note {
+      position: absolute;
+      right: 10px;
+      top: 20px;
+      background: transparent;
+      color: $medium-color;
+      border: none;
+      cursor: pointer;
+      opacity: 0;
+    }
+
+    .note-btn {
+      opacity: 0;
+      .add-note-btn {
+        @extend %btn-box-shared-small;
+        background-color: rgb(229, 231, 233);
+        cursor: none;
+
+        &.active {
+          background-color: $main-color;
+          cursor: pointer;
+        }
+      }
+
+      .delete-note-btn {
+        @extend %btn-basic-shared;
+        margin-left: 10px;
+      }
+    }
+  }
+  &.show {
+    .note-container {
+      visibility: visible;
+      height: $note-area-height;
+      opacity: 1;
+      @include transition(0.4s, ease, 0s);
+
+      .note-area {
+        visibility: visible;
+        opacity: 1;
+        @include transition(0.3s, ease, 0.2s);
+      }
+
+      .close-note {
+        visibility: visible;
+        opacity: 1;
+        @include transition(0.3s, ease, 0.2s);
+      }
+
+      .note-btn {
+        opacity: 1;
+        @include transition(0.2s, ease, 0.3s);
+      }
+    }
+  }
+
+  &.close {
+    .note-container {
+      visibility: hidden;
+      height: 0;
+      opacity: 0;
+      @include transition(0.4s, ease, 0s);
+
+      .note-area {
+        visibility: hidden;
+        opacity: 0;
+        @include transition(0.3s, ease, 0s);
+      }
+
+      .close-note {
+        visibility: hidden;
+        opacity: 0;
+        @include transition(0.3s, ease, 0s);
+      }
+
+      .note-btn {
+        opacity: 0;
+        @include transition(0.2s, ease, 0s);
+      }
+    }
+  }
+}

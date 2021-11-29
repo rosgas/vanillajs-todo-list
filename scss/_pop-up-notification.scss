@@ -1,0 +1,136 @@
+#notification {
+  position: fixed;
+  top: 15px;
+  width: 100%;
+  @include flexbox;
+  @include justify-content($value: center);
+  z-index: 4;
+
+  .notification-box {
+    position: relative;
+    padding: 15px 20px;
+    margin: 5px;
+    @include border-radius(2px);
+    width: 350px;
+    overflow: hidden;
+    @include flexbox;
+    @include flex-direction($direction: column);
+    @include align-items($value: flex-start);
+    background-color: transparent;
+    @include box-shadow(2px, 4px, 8px, rgba(49, 49, 49, 0.2));
+
+    &.fadein {
+      @include animation(fadein, forwards, 0.5s);
+    }
+
+    &.fadeout {
+      @include animation(fadeout, forwards, 0.3s);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #ffff;
+      z-index: -2;
+    }
+    .content {
+      @include flexbox;
+      @include align-items($value: center);
+
+      .icon {
+        position: relative;
+        color: $main-color;
+        margin-right: 20px;
+
+        &::after {
+          font-family: 'Font Awesome 5 Free';
+          font-weight: 600;
+          content: '\f06a';
+          background-image: -webkit-linear-gradient(
+            transparent,
+            transparent,
+            $main-color
+          );
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform-origin: bottom;
+          -webkit-transform-origin: bottom;
+          -ms-transform-origin: bottom;
+          transform: rotateX(180deg) translateY(2px);
+          -webkit-transform: rotateX(180deg) translateY(2px);
+          -o-transform: rotateX(180deg) translateY(2px);
+          -ms-transform: rotateX(180deg) translateY(2px);
+          opacity: 0.6;
+          color: transparent;
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+      }
+
+      .title {
+        font-size: 16px;
+        font-weight: 500;
+        color: $medium-color;
+      }
+    }
+    .notif-btn {
+      margin: 15px 0 0 50px;
+      input[value='No, thanks'] {
+        @extend %btn-box-shared-small;
+        color: $light-color;
+        background-color: transparent;
+        border: 0.5px solid $main-color;
+      }
+      input[value='Delete'] {
+        @extend %btn-box-shared-small;
+        background-color: $main-color;
+      }
+    }
+  }
+}
+
+@keyframes fadein {
+  0% {
+    top: 40px;
+    opacity: 0;
+  }
+  70% {
+    top: 60px;
+    opacity: 1;
+  }
+  100% {
+    top: 50px;
+    opacity: 1;
+  }
+}
+
+@include keyframes(fadein) {
+  0% {
+    top: 40px;
+    opacity: 0;
+  }
+  70% {
+    top: 60px;
+    opacity: 1;
+  }
+  100% {
+    top: 50px;
+    opacity: 1;
+  }
+}
+
+@include keyframes(fadeout) {
+  from {
+    top: 60px;
+    opacity: 1;
+  }
+  to {
+    top: 40px;
+    opacity: 0;
+  }
+}

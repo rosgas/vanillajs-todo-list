@@ -1,0 +1,291 @@
+#menu-wrap {
+  position: relative;
+  height: $dots-menu-height;
+  width: $dots-menu-height;
+
+  .dots {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    @include flexbox;
+    @include flex-direction($direction: column);
+    @include align-items($value: center);
+    @include justify-content($value: center);
+    z-index: 1;
+
+    %div-shared {
+      height: $dots-diameter;
+      width: $dots-diameter;
+      background-color: $dots-color;
+      @include border-radius(50%);
+      @include transition($menu-transition-speed, ease, 0s);
+    }
+
+    > div {
+      position: relative;
+      @extend %div-shared;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: calc((#{$dots-menu-height} / 2) - (#{$dots-diameter} / 2));
+        left: 0;
+        @extend %div-shared;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: calc((#{$dots-menu-height} / 2) - (#{$dots-diameter} / 2));
+        left: 0;
+        @extend %div-shared;
+      }
+    }
+  }
+
+  .menu {
+    position: absolute;
+    right: -10px;
+    top: calc(
+      #{$dots-menu-height} + (#{$row-height} - #{$dots-menu-height}) / 2
+    );
+    width: 0;
+    height: 0;
+    background-color: #fff;
+    padding: 20px 15px;
+    @include box-shadow(2px, 4px, 6px, rgba(49, 49, 49, 0.2));
+    @include flexbox;
+    @include flex-direction($direction: column);
+    @include align-items($value: flex-start);
+    @include justify-content($value: center);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 4;
+
+    ul {
+      list-style: none;
+      width: 100%;
+
+      %li-shared {
+        font-family: $main-font-family;
+        font-size: 16px;
+        color: $link-color;
+        opacity: 0;
+        visibility: hidden;
+        margin: 15px 0;
+        width: 100%;
+      }
+
+      .priority {
+        @extend %li-shared;
+        @include flexbox;
+        @include align-items($value: center);
+        @include justify-content($value: space-between);
+        &-btns {
+          width: 85px;
+          @include flexbox;
+          @include align-items($value: center);
+          @include justify-content($value: space-between);
+
+          .high {
+            @extend %priority-button;
+            color: $high-priority-color;
+            &:hover {
+              @include box-shadow(0px, 3px, 2px, rgba(250, 128, 114, 0.3));
+            }
+            &:before {
+              content: '\f062';
+              font-family: 'Font Awesome 5 Free';
+              font-weight: 900;
+              color: $high-priority-color;
+            }
+          }
+          .medium {
+            @extend %priority-button;
+            color: $medium-priority-color;
+            &:hover {
+              @include box-shadow(0px, 3px, 2px, rgba(248, 196, 113, 0.3));
+            }
+            &:before {
+              content: '\f7a4';
+              font-family: 'Font Awesome 5 Free';
+              font-weight: 900;
+              color: $medium-priority-color;
+            }
+          }
+          .low {
+            @extend %priority-button;
+            color: $low-priority-color;
+            &:hover {
+              @include box-shadow(0px, 3px, 2px, rgba(84, 153, 199, 0.3));
+            }
+            &:before {
+              content: '\f063';
+              font-family: 'Font Awesome 5 Free';
+              font-weight: 900;
+              color: $low-priority-color;
+            }
+          }
+        }
+      }
+
+      .add-note,
+      .edit-todo,
+      .delete {
+        @extend %li-shared;
+        @include flexbox;
+        @include align-items($value: center);
+        @include justify-content($value: space-between);
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          color: $main-color;
+        }
+        i {
+          z-index: -1;
+        }
+      }
+    }
+  }
+
+  .toggler {
+    @include appearance(none);
+    position: absolute;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 2;
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+
+    &:hover + .dots {
+      > div,
+      > div:after,
+      > div:before {
+        background-color: $dots-hover-color;
+      }
+    }
+
+    &:checked {
+      + .dots {
+        > div {
+          @include transform(
+            scale(1),
+            translateX(
+              calc(
+                ((#{$dots-menu-height} / 2) - (#{$dots-diameter} / 2)) *
+                  -0.7071067812
+              )
+            ),
+            translateY(
+              calc(
+                ((#{$dots-menu-height} / 2) - (#{$dots-diameter} / 2)) *
+                  -0.7071067812
+              )
+            )
+          );
+        }
+        > div:after {
+          @include transform(
+            scale(1),
+            translateX(
+              calc(
+                ((#{$dots-menu-height} / 2) - (#{$dots-diameter} / 2)) *
+                  0.7071067812
+              )
+            ),
+            translateY(
+              calc(
+                (2 * (#{$dots-menu-height} / 2) - (#{$dots-diameter} / 2)) *
+                  0.7071067812
+              )
+            )
+          );
+        }
+        > div:before {
+          @include transform(
+            scale(1),
+            translateX(
+              calc(
+                2 *
+                  (
+                    ((#{$dots-menu-height} / 2) - (#{$dots-diameter} / 2)) *
+                      0.7071067812
+                  )
+              )
+            ),
+            translateY(
+              calc(
+                ((#{$dots-menu-height} / 2) - (#{$dots-diameter} / 2)) -
+                  (
+                    ((#{$dots-menu-height} / 2) - (#{$dots-diameter} / 2)) *
+                      0.7071067812
+                  )
+              )
+            )
+          );
+        }
+      }
+
+      &:hover + .dots {
+        > div,
+        > div:after,
+        > div:before {
+          background-color: $dots-hover-color;
+          @include transition($menu-transition-speed, ease, 0s);
+        }
+      }
+
+      ~ .menu {
+        opacity: 1;
+        visibility: visible;
+        width: $menu-width;
+        height: $menu-height;
+        @include transition($menu-transition-speed, ease, 0s);
+
+        ul {
+          %li-shared {
+            opacity: 1;
+            visibility: visible;
+            @include transition($menu-transition-speed, ease, 0.3s);
+          }
+          .priority {
+            @extend %li-shared;
+          }
+          .add-note,
+          .delete {
+            @extend %li-shared;
+
+            &:hover {
+              color: $link-hover-color;
+              @include transition(0.2s, ease, 0s);
+            }
+          }
+        }
+      }
+    }
+
+    &:not(:checked) {
+      ~ .menu {
+        @include transition($menu-transition-speed, ease, 0s);
+        ul {
+          .link {
+            opacity: 0;
+            visibility: hidden;
+            @include transition(0.1s, ease, 0s);
+          }
+        }
+      }
+    }
+  }
+}

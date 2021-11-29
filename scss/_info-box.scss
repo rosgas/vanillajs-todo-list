@@ -1,0 +1,93 @@
+.info-box {
+  .toggle-info-btn {
+    @include appearance(none);
+    position: relative;
+    width: 100%;
+    font-size: 14px;
+    color: $medium-color;
+    border-top: 0.5px solid $border-color-light;
+    margin-bottom: 20px;
+    float: right;
+    width: 100%;
+
+    &:after {
+      content: 'App Info';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: fit-content;
+      white-space: nowrap;
+      @include transform(scale(1), translateX(0), translateY(-100%));
+      cursor: pointer;
+    }
+
+    &:before {
+      content: '\f0dd';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      font-size: 18px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      @include transform(scale(1), translateX(0), translateY(100%));
+      cursor: pointer;
+    }
+
+    &:hover {
+      color: $secondary-color;
+      border-top: 0.5px solid $secondary-color;
+      @include transition(0.1s, ease, 0s);
+    }
+  }
+
+  .info-content {
+    padding-right: 15px;
+    opacity: 0;
+    visibility: hidden;
+    @include transition(0.4s, ease, 0s);
+
+    .intro-text {
+      font-size: 15px;
+      color: rgb(137, 142, 145);
+      line-height: 1.5;
+      margin: 10px 0;
+    }
+    .demo-btn {
+      font-family: $main-font-family;
+      font-weight: 600;
+      font-size: 18px;
+      border: none;
+      border-bottom: 1px solid $secondary-color;
+      background-color: transparent;
+      margin-top: 10px;
+      cursor: pointer;
+      color: $secondary-color;
+
+      &:hover {
+        color: $secondary-color-dark;
+      }
+    }
+  }
+
+  .toggle-info-btn:checked {
+    color: $secondary-color;
+    border-top: 0.5px solid $secondary-color;
+    @include transition(0.4s, ease, 0s);
+    &:before {
+      content: '\f00d';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      font-size: 16px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding-top: 10px;
+      cursor: pointer;
+    }
+
+    ~ .info-content {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

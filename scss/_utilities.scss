@@ -1,0 +1,93 @@
+%btn-box-shared {
+  font-family: $main-font-family;
+  font-weight: 600;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  @include border-radius(5px);
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+%btn-box-shared-small {
+  @extend %btn-box-shared;
+  padding: 7px 15px;
+  font-size: 14px;
+}
+
+%btn-basic-shared {
+  border: none;
+  color: $light-color;
+  background-color: transparent;
+  font-family: $main-font-family;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 10px;
+
+  &:hover {
+    color: $main-color !important;
+  }
+}
+
+%priority-button {
+  width: 20px;
+  height: 20px;
+  @include border-radius(50%);
+  background: none;
+  border: none;
+  @include transform(scale(1.2), translateX(0), translateY(0));
+  cursor: pointer;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+%hover-box-content {
+  position: absolute;
+  bottom: -7px;
+  font-family: $main-font-family;
+  font-size: 10px;
+  font-weight: 500;
+  color: #fff;
+  width: 78px;
+  padding: 5px;
+  background-color: #313131;
+  @include border-radius(2px);
+  @include transform(scale(1), translateX(0), translateY(100%));
+  z-index: 6;
+}
+
+%link {
+  color: $secondary-color;
+  text-decoration: none;
+  border-bottom: 0.5px solid transparent;
+  @include transition(0.2s, ease, 0s);
+  transition: 0.2s ease;
+  &:hover {
+    border-bottom: 0.5px solid $secondary-color;
+  }
+}
+
+.high-priority-color {
+  color: $high-priority-color;
+}
+.medium-priority-color {
+  color: $medium-priority-color;
+}
+.low-priority-color {
+  color: $low-priority-color;
+}
+.light-color {
+  color: $light-color;
+}
+.highlighted {
+  color: $dark-color;
+  font-weight: 600;
+}
