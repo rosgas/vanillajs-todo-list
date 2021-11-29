@@ -21,11 +21,17 @@ const FormUICtrl = (function () {
     if (mediaMobile.matches) {
       video
         .querySelector('source')
-        .setAttribute('src', '/dist/assets/videos/demo-rec-mobile.mp4')
+        .setAttribute(
+          'src',
+          'https://rosgas.github.io/vanillajs-todo-list/assets/videos/demo-rec-mobile.mp4',
+        )
     } else {
       video
         .querySelector('source')
-        .setAttribute('src', '/dist/assets/videos/demo-rec.mp4')
+        .setAttribute(
+          'src',
+          'https://rosgas.github.io/vanillajs-todo-list/assets/videos/demo-rec.mp4',
+        )
     }
 
     video.load()
