@@ -75,6 +75,11 @@ const TodosUICtrl = (function () {
     return visible
   }
 
+  const setVisibleItems = function () {
+    const visibleTodos = getVisibleItems()
+    ItemCtrl.setVisibleItems(visibleTodos)
+  }
+
   const changeColor = function (btnEl) {
     btnEl.parentElement.querySelectorAll('button').forEach((btn) => {
       btn.style.color = 'rgb(166, 172, 175)'
@@ -83,7 +88,7 @@ const TodosUICtrl = (function () {
   }
 
   const activeFilter = function (text) {
-    const visibleItems = getVisibleItems()
+    const visibleItems = ItemCtrl.getVisibleItems()
 
     const resultsEl = todosUISelectors.filterResults
     const matches = resultsEl.querySelector('.matches')
@@ -281,9 +286,11 @@ const TodosUICtrl = (function () {
       if (e.target.value === '') {
         setFilterBlur(e.target)
       }
+      ItemCtrl.resetVisibleItems()
     },
 
     focusFilterInput: function (e) {
+      setVisibleItems()
       FormUICtrl.focusInput(e)
     },
 
