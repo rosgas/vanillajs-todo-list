@@ -103,10 +103,6 @@ const infoHeight = FormUICtrl.setInfoHeight()
 FormAppCtrl.init()
 TodosAppCtrl.init()
 
-window.onresize = function () {
-  location.reload()
-}
-
 function func(e) {
   event.preventDefault()
 }
