@@ -14,6 +14,7 @@ const ItemCtrl = (function () {
   const data = {
     items: StorageCtrl.getItemsFromStorage(),
     currentItem: null,
+    visibleItems: [],
     todosLeft: 0,
   }
 
@@ -101,6 +102,20 @@ const ItemCtrl = (function () {
         }
       })
       data.currentItem = null
+    },
+
+    setVisibleItems: function (visibleTodos) {
+      data.visibleItems = visibleTodos
+    },
+
+    getVisibleItems: function () {
+      return data.visibleItems
+    },
+
+    resetVisibleItems: function () {
+      if (data.visibleItems !== []) {
+        data.visibleItems = []
+      }
     },
 
     addNote: function (noteText) {
