@@ -157,8 +157,8 @@ const TodosUICtrl = (function () {
     ItemCtrl.setFilteredItems(filteredTodos)
   }
 
-  const setFilterBlur = function (textField) {
-    textField.parentElement.classList.remove('focus-input')
+  const setFilterBlur = function () {
+    todosUISelectors.filter.parentElement.classList.remove('focus-input')
     todosUISelectors.filterResults.style.display = 'none'
     document.querySelectorAll('.todos-row').forEach(function (todo) {
       todo.style.display = 'flex'
