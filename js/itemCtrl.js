@@ -15,6 +15,7 @@ const ItemCtrl = (function () {
     items: StorageCtrl.getItemsFromStorage(),
     currentItem: null,
     visibleItems: [],
+    filteredItems: [],
     todosLeft: 0,
   }
 
@@ -115,6 +116,20 @@ const ItemCtrl = (function () {
     resetVisibleItems: function () {
       if (data.visibleItems !== []) {
         data.visibleItems = []
+      }
+    },
+
+    setFilteredItems: function (filteredTodos) {
+      data.filteredItems = filteredTodos
+    },
+
+    getFilteredItems: function () {
+      return data.filteredItems
+    },
+
+    resetFilteredItems: function () {
+      if (data.filteredItems !== []) {
+        data.filteredItems = []
       }
     },
 
