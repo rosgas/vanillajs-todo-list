@@ -451,6 +451,10 @@ const TodosUICtrl = (function () {
       }
     },
 
+    getSetFilterBlur: function () {
+      return setFilterBlur()
+    },
+
     getCreateNotification: function (msg) {
       return createNotification(msg)
     },
