@@ -75,6 +75,22 @@ const TodosUICtrl = (function () {
     return visible
   }
 
+  const getCurrentTodos = function () {
+    const resultsEl = todosUISelectors.filterResults
+
+    const filteredTodos = ItemCtrl.getFilteredItems()
+
+    let currentTodos
+
+    if (filteredTodos.length === 0 && resultsEl.style.display === 'none') {
+      currentTodos = itemList.querySelectorAll('.row')
+    } else {
+      currentTodos = filteredTodos
+    }
+
+    return currentTodos
+  }
+
   const setVisibleItems = function () {
     const visibleTodos = getVisibleItems()
     ItemCtrl.setVisibleItems(visibleTodos)
@@ -87,8 +103,8 @@ const TodosUICtrl = (function () {
     btnEl.style.color = 'rgb(22, 160, 133)'
   }
 
-  const activeFilter = function (text) {
-    const visibleItems = ItemCtrl.getVisibleItems()
+  const updateFilterResults = function (items) {
+    text = todosUISelectors.filter.value
 
     const resultsEl = todosUISelectors.filterResults
     const matches = resultsEl.querySelector('.matches')
@@ -98,11 +114,28 @@ const TodosUICtrl = (function () {
     let matchesFound = 0
 
     if (text === '') {
+      resultsEl.style.display = 'none'
+    } else {
+      items.forEach(function (todo) {
+        const item = todo.querySelector('.todo-text').value
+
+        if (item.toLowerCase().indexOf(text) !== -1) {
+          matchesFound++
+        }
+      })
+    }
+
+    matches.textContent = matchesFound
+  }
+
+  const activeFilter = function (text) {
+    const visibleItems = ItemCtrl.getVisibleItems()
+    updateFilterResults(visibleItems)
+
+    if (text === '') {
       document
         .querySelectorAll('.todos-row')
         .forEach((todo) => (todo.style.display = 'flex'))
-
-      resultsEl.style.display = 'none'
     } else {
       todosUISelectors.clearFilterBtn.classList.add('show-clear-btn')
       visibleItems.forEach(function (todo) {
@@ -110,7 +143,6 @@ const TodosUICtrl = (function () {
 
         if (item.toLowerCase().indexOf(text) !== -1) {
           todo.style.display = 'flex'
-          matchesFound++
         } else {
           todo.style.display = 'none'
         }
@@ -118,8 +150,11 @@ const TodosUICtrl = (function () {
     }
 
     hideTodos()
+  }
 
-    matches.textContent = matchesFound
+  const setFilteredItems = function () {
+    const filteredTodos = getVisibleItems()
+    ItemCtrl.setFilteredItems(filteredTodos)
   }
 
   const setFilterBlur = function (textField) {
@@ -128,6 +163,8 @@ const TodosUICtrl = (function () {
     document.querySelectorAll('.todos-row').forEach(function (todo) {
       todo.style.display = 'flex'
     })
+    ItemCtrl.resetFilteredItems()
+    hideTodos()
   }
 
   //Public methods
@@ -284,19 +321,24 @@ const TodosUICtrl = (function () {
 
     blurFilterInput: function (e) {
       if (e.target.value === '') {
-        setFilterBlur(e.target)
+        setFilterBlur()
       }
-      ItemCtrl.resetVisibleItems()
+      if (todosUISelectors.filter.value === '') {
+        ItemCtrl.resetVisibleItems()
+      }
     },
 
     focusFilterInput: function (e) {
-      setVisibleItems()
+      if (todosUISelectors.filter.value === '') {
+        setVisibleItems()
+      }
       FormUICtrl.focusInput(e)
     },
 
     filterTodos: function (e) {
       const text = e.target.value.toLowerCase()
       activeFilter(text)
+      setFilteredItems()
     },
 
     clearFilter: function () {
@@ -307,39 +349,35 @@ const TodosUICtrl = (function () {
     },
 
     showCompletedTodos: function () {
-      const todorows = itemList.querySelectorAll('.row')
-      const filterText = todosUISelectors.filter.value
-      todorows.forEach((todorow) => {
-        const checkbox = todorow.querySelector('.completed-checkbox')
+      const currentTodos = getCurrentTodos()
+      currentTodos.forEach((todo) => {
+        const checkbox = todo.querySelector('.completed-checkbox')
         if (checkbox.checked === false) {
-          todorow.style.display = 'none'
+          todo.style.display = 'none'
         } else {
-          todorow.style.display = 'flex'
+          todo.style.display = 'flex'
         }
       })
       changeColor(todosUISelectors.filterCompleted)
 
-      if (filterText !== '') {
-        activeFilter(filterText)
-      }
+      const visibleItems = getVisibleItems()
+      updateFilterResults(visibleItems)
       hideTodos()
     },
 
     showAllTodos: function () {
-      const todorows = itemList.querySelectorAll('.row')
-      const filterText = todosUISelectors.filter.value
+      const currentTodos = getCurrentTodos()
 
-      todorows.forEach((todorow) => {
-        const checkbox = todorow.querySelector('.completed-checkbox')
+      currentTodos.forEach((todo) => {
+        const checkbox = todo.querySelector('.completed-checkbox')
         if (checkbox.checked === false) {
-          todorow.style.display = 'flex'
+          todo.style.display = 'flex'
         }
       })
       changeColor(todosUISelectors.filterAll)
 
-      if (filterText !== '') {
-        activeFilter(filterText)
-      }
+      const visibleItems = getVisibleItems()
+      updateFilterResults(visibleItems)
       hideTodos()
     },
 

@@ -217,6 +217,11 @@ const FormUICtrl = (function () {
         e.target.parentElement.querySelector('.toggler').checked = false
         e.target.parentElement.querySelector('.note').classList.add('close')
       }
+      if (e.target.classList.contains('todo')) {
+        TodosUICtrl.getSelectors().filter.value = ''
+        TodosUICtrl.getSetFilterBlur()
+        ItemCtrl.resetVisibleItems()
+      }
     },
 
     addPriorityIcon: function (e) {
