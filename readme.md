@@ -24,7 +24,7 @@
 - <a href="#sass-section">Sass folder structure</a>
 - <a href="#js-section">JS</a>
 - <a href="#setup-section">Setup/Installation</a>
-- <a href="#acknowledgmens-section">Acknowledgmens</a>
+- <a href="#acknowledgments-section">Acknowledgments</a>
 
 <br>
 
@@ -145,7 +145,7 @@ This project is licensed under the [MIT License](https://github.com/rosgas/vanil
 
 <br>
 
-<h2 id="acknowledgmens-section">Acknowledgmens</h2>
+<h2 id="acknowledgments-section">Acknowledgments</h2>
 
 - [GitHub Pages](https://pages.github.com/)
 - [Font Awesome](https://fontawesome.com/)
